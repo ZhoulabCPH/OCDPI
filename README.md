@@ -15,20 +15,20 @@ Code for 'Predicting prognoses and therapy responses in ovarian cancer patients 
 - patches: Store patches extracted from WSIs.
 - graphs: Store graph representation of WSIs.
 - gradients: Store gradients of patches in TCGA discovery cohort.
-****
+
 ## checkpoints
 - checkpoint_CTransPath: CTransPath model pretrained by [CTransPath](https://github.com/Xiyue-Wang/TransPath).
 - checkpoint_GDL: Graph-based deep learning (GDL) pretrained on our TCGA discovery cohort.
-****
+
 ## data_preprocessing
 - <code>multi_thread_WSI_segmentation.py</code>: Used to segment and filter patches from WSIs. Implemented based on <code>histolab</code> package.
-****
+
 ## get_patches_feature
 - <code>ctran.py</code>: Implementation of CTransPath.
 - <code>get_CTransPath_features.py</code>: Using pre-trained CTransPath to obtain histopathological features of patches.
   
   Part of the implementation here is based on [CTransPath](https://github.com/Xiyue-Wang/TransPath).
-****
+
 ## construction_OCDPI
 - <code>utils/conceptualize_WSI_to_graph.py</code>: Get the graph representation of WSIs and further used for the graph-based deep learning (GDL) model.
 - <code>utils/dataset.py</code>: Generate datasets.
@@ -38,6 +38,7 @@ Code for 'Predicting prognoses and therapy responses in ovarian cancer patients 
 - <code>model</code>: Implementation of GDL model.
 - <code>train</code>: Training the GDL model.
 - <code>evaluation</code>: Evaluation of the GDL model in multi-center external cohorts.
+****
 ## Usage
 If you intend to utilize it for paper reproduction or your own WSI dataset, please adhere to the following workflow:
   1) Configuration Environment.
