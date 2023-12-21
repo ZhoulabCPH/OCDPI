@@ -11,14 +11,22 @@ Code for 'Predicting prognoses and therapy responses in ovarian cancer patients 
 ****
 ## datasets
 - clinical_data: Clinical information of each cohort, stored in csv format. At least three columns, id, event time and event state are required for training or obtaining evaluation results.
-- WSIs: Whole slide images of each cohort.
-- patches: Patches extracted from WSIs by using <code>data_preprocessing/multi_thread_WSI_segmentation.py</code>
-## self-supervised pretraining
-- <code>args.py</code>: Get the training parameters of the BarlowTwins model.
+- WSIs: Store whole slide images of each cohort.
+- patches: Store patches extracted from WSIs.
+- graphs: Store Graph representation of WSIs.
+- gradients: Store gradients of patches in TCGA discovery cohort.
+****
+## data_preprocessing
+- <code>multi_thread_WSI_segmentation.py</code>: Used to segment and filter patches from WSIs. Implemented based on <code>histolab</code> package.
 - <code>make_hdf5.py</code>: Save image to hdf5 format.
 - <code>model.py</code>: Implementation of BarlowTwins.
 - <code>train.py</code>: Training the BarlowTwins model on TCGA cohort.
 - <code>utils.py</code>: Using pre-trained ResNet50 to obtain histopathological features of patches.
+****
+## get_patches_feature
+- <code>ctran.py</code>: Implementation of CTransPath.
+- <code>get_CTransPath_features.py</code>: Using pre-trained CTransPath to obtain histopathological features of patches.
+Part of the implementation here is based on [CTransPath](https://github.com/Xiyue-Wang/TransPath).
 ****
 ## construction_OCDPI
 - <code>args.py</code>: Get the training parameters of the graph-based deep learning (GDL) model.
@@ -26,6 +34,3 @@ Code for 'Predicting prognoses and therapy responses in ovarian cancer patients 
 - <code>train.py</code>: Training the GDL model on TCGA cohort.
 - <code>utils.py</code>:WSI-based graph construction.
 
-## interpretability
-- <code>leiden_clustering.py</code>: Implement clustering of patches using Leiden method.
-****
