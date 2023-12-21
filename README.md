@@ -13,24 +13,33 @@ Code for 'Predicting prognoses and therapy responses in ovarian cancer patients 
 - clinical_data: Clinical information of each cohort, stored in csv format. At least three columns, id, event time and event state are required for training or obtaining evaluation results.
 - WSIs: Store whole slide images of each cohort.
 - patches: Store patches extracted from WSIs.
-- graphs: Store Graph representation of WSIs.
+- graphs: Store graph representation of WSIs.
 - gradients: Store gradients of patches in TCGA discovery cohort.
 ****
 ## data_preprocessing
 - <code>multi_thread_WSI_segmentation.py</code>: Used to segment and filter patches from WSIs. Implemented based on <code>histolab</code> package.
-- <code>make_hdf5.py</code>: Save image to hdf5 format.
-- <code>model.py</code>: Implementation of BarlowTwins.
-- <code>train.py</code>: Training the BarlowTwins model on TCGA cohort.
-- <code>utils.py</code>: Using pre-trained ResNet50 to obtain histopathological features of patches.
 ****
 ## get_patches_feature
 - <code>ctran.py</code>: Implementation of CTransPath.
 - <code>get_CTransPath_features.py</code>: Using pre-trained CTransPath to obtain histopathological features of patches.
-Part of the implementation here is based on [CTransPath](https://github.com/Xiyue-Wang/TransPath).
+  
+  Part of the implementation here is based on [CTransPath](https://github.com/Xiyue-Wang/TransPath).
 ****
 ## construction_OCDPI
-- <code>args.py</code>: Get the training parameters of the graph-based deep learning (GDL) model.
-- <code>model.py</code>: Implementation of GDL model.
-- <code>train.py</code>: Training the GDL model on TCGA cohort.
-- <code>utils.py</code>:WSI-based graph construction.
+- <code>utils/conceptualize_WSI_to_graph.py</code>: Get the graph representation of WSIs and further used for the graph-based deep learning (GDL) model.
+- <code>utils/dataset.py</code>: Generate datasets.
+- <code>utils/util.py</code>: Tools and loss function used in training.
+- <code>utils/calculate_gradient_of_patch.py</code>: Integrated Gradients (IG)-based gradient calculation for model interpretability.
+- <code>utils/visualisation.py</code>: Gradient value visualization.
+- <code>model</code>: Graph-based deep learning (GDL) model.
+- <code>train</code>: Training the GDL model.
+- <code>evaluation</code>: Evaluation of the GDL model in multi-center external cohorts.
+## Usage
+If you intend to utilize it for paper reproduction or your own WSI dataset, please adhere to the following workflow:
+  1) Configuration Environment.
+  2) Create a folder for your data in <code>datasets</code> and download or move the WSIs there.
+  3) Use <code>data_preprocessing/multi_thread_WSI_segmentation.py</code> to segment WSIs into patches.
+  4) Use <code>construct_OCDPI/utils/conceptualize_WSI_to_graph.py</code> to obtain graph representation for WSIs.
+  5) Run <code>construct_OCDPI/train.py</code> to train the GDL model. When training is complete you can use this GDL model to calculate OCDPI (Ovarian Cancer Digital Pathology Index) from each WSI.
+  6) Using <code>construct_OCDPI/evaluation.py</code> you can obtain the evaluation results of the survival prediction performance of the GDL model.
 
