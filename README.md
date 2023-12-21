@@ -16,6 +16,10 @@ Code for 'Predicting prognoses and therapy responses in ovarian cancer patients 
 - graphs: Store graph representation of WSIs.
 - gradients: Store gradients of patches in TCGA discovery cohort.
 ****
+## checkpoints
+- checkpoint_CTransPath: CTransPath model pretrained by [CTransPath](https://github.com/Xiyue-Wang/TransPath).
+- checkpoint_GDL: Graph-based deep learning (GDL) pretrained on our TCGA discovery cohort.
+****
 ## data_preprocessing
 - <code>multi_thread_WSI_segmentation.py</code>: Used to segment and filter patches from WSIs. Implemented based on <code>histolab</code> package.
 ****
@@ -31,7 +35,7 @@ Code for 'Predicting prognoses and therapy responses in ovarian cancer patients 
 - <code>utils/util.py</code>: Tools and loss function used in training.
 - <code>utils/calculate_gradient_of_patch.py</code>: Integrated Gradients (IG)-based gradient calculation for model interpretability.
 - <code>utils/visualisation.py</code>: Gradient value visualization.
-- <code>model</code>: Graph-based deep learning (GDL) model.
+- <code>model</code>: Implementation of GDL model.
 - <code>train</code>: Training the GDL model.
 - <code>evaluation</code>: Evaluation of the GDL model in multi-center external cohorts.
 ## Usage
@@ -39,7 +43,8 @@ If you intend to utilize it for paper reproduction or your own WSI dataset, plea
   1) Configuration Environment.
   2) Create a folder for your data in <code>datasets</code> and download or move the WSIs there.
   3) Use <code>data_preprocessing/multi_thread_WSI_segmentation.py</code> to segment WSIs into patches.
-  4) Use <code>construct_OCDPI/utils/conceptualize_WSI_to_graph.py</code> to obtain graph representation for WSIs.
-  5) Run <code>construct_OCDPI/train.py</code> to train the GDL model. When training is complete you can use this GDL model to calculate OCDPI (Ovarian Cancer Digital Pathology Index) from each WSI.
-  6) Using <code>construct_OCDPI/evaluation.py</code> you can obtain the evaluation results of the survival prediction performance of the GDL model.
+  4) Use <code>get_patches_feature/conceptualize_WSI_to_graph.py</code> to obtain representation vector of patches.
+  5) Use <code>construct_OCDPI/utils/conceptualize_WSI_to_graph.py</code> to obtain graph representation for WSIs.
+  6) Run <code>construct_OCDPI/train.py</code> to train the GDL model. When training is complete you can use this GDL model to calculate OCDPI (Ovarian Cancer Digital Pathology Index) from each WSI.
+  7) Using <code>construct_OCDPI/evaluation.py</code> you can obtain the evaluation results of the survival prediction performance of the GDL model.
 
