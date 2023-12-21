@@ -1,7 +1,7 @@
 # OCDPI [![DOI](https://zenodo.org/badge/691128305.svg)](https://zenodo.org/doi/10.5281/zenodo.10405066)
 Code for 'Predicting prognoses and therapy responses in ovarian cancer patients from histopathology images using graph deep learning: a multicenter retrospective study'
 
-![flowchart](https://github.com/ZhoulabCPH/OCDPI/blob/master/checkpoints/flowchart)
+![flowchart](https://github.com/ZhoulabCPH/OCDPI/blob/master/checkpoints/flowchart.png)
 
 ****
 ## Dataset 
